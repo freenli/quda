@@ -21,11 +21,11 @@
               <a class="page-scroll" href="#team"  @click="smoothScroll($event)">Team</a>
             </li> -->
             <li>
-              <a class="page-scroll" href="https://github.com/xdge/Quda_corpus"  @click="smoothScroll($event)">Download</a>
+              <a class="page-scroll" href="https://drive.google.com/file/d/1AUTbV4mV1YHXZ0g1tPU3lb6JJypqtc3s/view?usp=sharing"  @click="smoothScroll($event)">Download</a>
             </li>
-            <li>
+            <!-- <li>
               <a class="page-scroll" href="#contact"  @click="smoothScroll($event)">Contact</a>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>
@@ -39,8 +39,8 @@
           <h3>{{ subtitle }}</h3>
           <p class="text-faded">
             {{ projectDesc }}
-            <br><br>
-            {{ projectSubDesc }}
+            <!-- <br><br>
+            {{ projectSubDesc }} -->
           </p>
         </div>
       </div>
@@ -49,7 +49,7 @@
     <section class="bg-primary" id="details">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 col-lg-offset-2 text-center">
+          <div class="col-lg-10 col-lg-offset-2 text-center">
             <h2 class="section-heading">Six Dimensions</h2>
             <hr class="light">
             <div class="row six-dimensions" v-for="twoItems in aboutDetails" :key="twoItems[0][0]">
@@ -76,7 +76,19 @@
           <div class="text-center">
             <h2 class="section-heading"> <i class="fa fa-table"></i> Corpus Preview</h2>
             <hr class="primary">
-            <vue-good-table :columns="columns" :rows="rows" :line-numbers="true" />
+            <vue-good-table :columns="columns" :rows="rows" :line-numbers="true">
+              <div slot="table-actions">
+                <button class="btn" @click="download()">Download</button> 
+              </div>
+            </vue-good-table>
+            <div class="tips">
+              <h4>Tips:</h4>
+              <p style="margin-bottom: 0;">task_id: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;task id of the sentence(1-10) </p>
+              <p style="margin-bottom: 0;">exp_sen_id: expert sentence id of the sentence(1-920)</p>
+              <p style="margin-bottom: 0;">is_exp_sen: whether the sentence is the expert sentence(0: no, 1: yes)</p>
+              <p style="margin-bottom: 0;">table_id: table id of the sentence(1-37)</p>
+              <p style="margin-bottom: 0;">expert_id: expert id of the sentence(1-20)</p>
+            </div>
             <!-- <h3><i class="fa fa-table"></i> The analysis of 10 tasks</h3> -->
           </div>
         </div>
@@ -112,13 +124,12 @@
       </div>
     </section> -->
 
-    <section id="contact" class="bg-dark">
+    <!-- <section id="contact" class="bg-dark">
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
             <h2 class="section-heading">{{ contactTitle }}</h2>
             <hr class="primary">
-            <!-- <p>{{ contactDesc }}</p> -->
           </div>
           <div class="col-md-12 text-center">
             <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
@@ -126,7 +137,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     
 
   </div>
@@ -152,11 +163,11 @@ export default {
     return {
       title: 'QUDA',
       subtitle: 'Natural Language Queries for Visual Data Analytics',
-      projectDesc: 'Visualization-oriented natural language interfaces (V-NLIs) have been explored and developed in recent years. One challenge faced by V-NLIs is in the formation of effective design decisions that usually requires a deep understanding of user queries. We present a new dataset, called Quda,  to help V-NLIs categorize queries into analytic tasks by training and benchmarking cutting-edge NLP techniques. Our corpus consists of a number of queries annotated with an analytic task and features high-quality, large-volume queries designed in the context of V-NLIs.',
+      projectDesc: 'In the context of visualization-oriented natural language interfaces, Quda contains 14,035 diverse user queries annotated with 10 low-level analytic tasks that assist in the deployment of state-of-the-art machine/deep learning techniques for parsing complex human language.',
       projectSubDesc: 'Quda contains 14,035 diverse user queries annotated with 10 low-level analytic tasks that assist in the deployment of state-of-the-art techniques for parsing complex human language.',
       aboutDetails: [
         [["Abstraction: Low", "The abstraction level describes how concrete a query is.", "/img/icons/abstraction.png"], ["Composition: Low", "The composition level describes to what extent a query encompasses sub-queries.", "/img/icons/composition.png"]],
-        [["Perspective: Objectives", "Instead of enumerating actions, we aim to collect queries that are objectives raised by data analysts.","/img/icons/objective.png"], ["Type of Data: Table", "Data and dataset can be categorized into five types, i.e., table, networks & trees, fields, geometry, and clusters & sets & lists.","/img/icons/table.png"]],
+        [["Perspective: Objectives", "Instead of enumerating actions, we aim to collect queries that are objectives raised by data analysts.","/img/icons/perspective.png"], ["Type of Data: Table", "Data and dataset can be categorized into five types, i.e., table, networks & trees, fields, geometry, and clusters & sets & lists.","/img/icons/table.png"]],
         [["Type of Tasks: 10 Low-level Tasks", " Retrieve Value, Correlate, Compute Derived Value, Find Anomalies, etc.","/img/icons/tasks.png"], ["Context Dependency: Independent", "Focus on queries that have complete references to tasks or values associated with a task.","/img/icons/context.png"]],
       ],
       eyeTitle: 'Eye-movement Data',
@@ -428,6 +439,9 @@ export default {
       //   rqst_resn: this.rqstResn,
       //   requested: requested
       // }
+    },
+    download: function () {
+      window.location.href="https://drive.google.com/file/d/1AUTbV4mV1YHXZ0g1tPU3lb6JJypqtc3s/view?usp=sharing";
     }
   },
   mounted() {
