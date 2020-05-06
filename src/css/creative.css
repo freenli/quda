@@ -539,3 +539,10 @@ body {
 .img-rounded {
     margin-top: 10px;
 }
+.table-text-center{
+    text-align: center;
+    font-family: Times New Roman;
+}
+.corpus-preview{
+    width: 1500px
+}

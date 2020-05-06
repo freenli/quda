@@ -9,19 +9,19 @@
         <div id="bs-scrollspy">
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <a class="page-scroll" href="#details" @click="smoothScroll($event)">Six Dimensions</a>
+              <a class="page-scroll" href="#details" @click="smoothScroll($event)">Dimensions</a>
             </li>
             <li>
-              <a class="page-scroll" href="#overview"  @click="smoothScroll($event)">Overview</a>
+              <a class="page-scroll" href="#preview"  @click="smoothScroll($event)">Preview</a>
             </li>
-            <li>
+            <!-- <li>
               <a class="page-scroll" href="#freenli"  @click="smoothScroll($event)">Free-NLI</a>
-            </li>
-            <li>
+            </li> -->
+            <!-- <li>
               <a class="page-scroll" href="#team"  @click="smoothScroll($event)">Team</a>
-            </li>
+            </li> -->
             <li>
-              <a class="page-scroll" href="https://freenli.github.io/quda/"  @click="smoothScroll($event)">Download</a>
+              <a class="page-scroll" href="https://github.com/xdge/Quda_corpus"  @click="smoothScroll($event)">Download</a>
             </li>
             <li>
               <a class="page-scroll" href="#contact"  @click="smoothScroll($event)">Contact</a>
@@ -70,22 +70,22 @@
       </div>
     </section>
 
-    <section id="overview">
-      <div class="container">
+    <section id="preview">
+      <div class="container corpus-preview">
         <div class="row" style="margin-top:20px">
-          <div class="col-lg-8 col-lg-offset-2 text-center">
-            <h2 class="section-heading">Corpus Overview</h2>
+          <div class="text-center">
+            <h2 class="section-heading"> <i class="fa fa-table"></i> Corpus Preview</h2>
             <hr class="primary">
-            <h3><i class="fa fa-tasks"></i> The analysis of 10 tasks</h3>
-            <img width="100%" src="/img/overview.png" class="img-rounded">
+            <vue-good-table :columns="columns" :rows="rows" :line-numbers="true" />
+            <!-- <h3><i class="fa fa-table"></i> The analysis of 10 tasks</h3> -->
           </div>
         </div>
-        <div class="row" style="margin-top:20px">
+        <!-- <div class="row" style="margin-top:20px">
           <div class="col-lg-8 col-lg-offset-2 text-center">
             <h3><i class="fa fa-table"></i> Samples</h3>
             <img width="100%" src="/img/infographic.png" class="img-rounded">
           </div>
-        </div>
+        </div> -->
       </div>
     </section>
 
@@ -118,11 +118,11 @@
           <div class="col-md-12 text-center">
             <h2 class="section-heading">{{ contactTitle }}</h2>
             <hr class="primary">
-            <p>{{ contactDesc }}</p>
+            <!-- <p>{{ contactDesc }}</p> -->
           </div>
           <div class="col-md-12 text-center">
             <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
-            <p><a href="mailto:xdge@zju.edu">xdge@zju.edu</a></p>
+            <p><a href="mailto:xdge1996@gmail.com">xdge1996@gmail.com</a></p>
           </div>
         </div>
       </div>
@@ -140,9 +140,14 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/js/bootstrap.js'
 import '../css/animate.min.css'
 import 'font-awesome/css/font-awesome.min.css'
+import 'vue-good-table/dist/vue-good-table.css'
+import { VueGoodTable } from 'vue-good-table'
 
 export default {
   name: 'HomePage',
+  components: {
+  VueGoodTable,
+},
   data() {
     return {
       title: 'QUDA',
@@ -150,9 +155,9 @@ export default {
       projectDesc: 'Visualization-oriented natural language interfaces (V-NLIs) have been explored and developed in recent years. One challenge faced by V-NLIs is in the formation of effective design decisions that usually requires a deep understanding of user queries. We present a new dataset, called Quda,  to help V-NLIs categorize queries into analytic tasks by training and benchmarking cutting-edge NLP techniques. Our corpus consists of a number of queries annotated with an analytic task and features high-quality, large-volume queries designed in the context of V-NLIs.',
       projectSubDesc: 'Quda contains 14,035 diverse user queries annotated with 10 low-level analytic tasks that assist in the deployment of state-of-the-art techniques for parsing complex human language.',
       aboutDetails: [
-        [["Abstraction: Concrete", "Focus on the queries at the low abstraction level", "/img/icons/taxonomy.png"], ["Composition: Low", "10s of eye-tracking lab participants", "/img/icons/10s-of-people.png"]],
-        [["Perspective: Objectives", "100s of labeled visualizations","/img/icons/100s-labeled-viz.png"], ["Type of Data: Table", "100s of memorability scores","/img/icons/100s-mem-scores.png"]],
-        [["Type of Tasks: 10 Low-level Tasks", "100s of participants on Amazon’s Mechanical Turk","/img/icons/100s-of-people.png"], ["Context Dependency: Independent", '1000s of visualizations "in-the-wild"',"/img/icons/1000s-visualization.png"]],
+        [["Abstraction: Low", "The abstraction level describes how concrete a query is.", "/img/icons/abstraction.png"], ["Composition: Low", "The composition level describes to what extent a query encompasses sub-queries.", "/img/icons/composition.png"]],
+        [["Perspective: Objectives", "Instead of enumerating actions, we aim to collect queries that are objectives raised by data analysts.","/img/icons/objective.png"], ["Type of Data: Table", "Data and dataset can be categorized into five types, i.e., table, networks & trees, fields, geometry, and clusters & sets & lists.","/img/icons/table.png"]],
+        [["Type of Tasks: 10 Low-level Tasks", " Retrieve Value, Correlate, Compute Derived Value, Find Anomalies, etc.","/img/icons/tasks.png"], ["Context Dependency: Independent", "Focus on queries that have complete references to tasks or values associated with a task.","/img/icons/context.png"]],
       ],
       eyeTitle: 'Eye-movement Data',
       eyeDesc: 'We have eye-movement data for a total of 393 visualizations and 33 viewers, with an average of 16 viewers per visualization. Each viewer looked at each visualization for 10 seconds, generating an average of 37 fixation points. This is a total of about 600 fixation points per visualization across all viewers. We store the (x,y) location of each fixation on a visualization, the time-point when the fixation occurred during the viewing period, and the duration (in ms) of each fixation. We provide tools for visualizing the fixation sequences, fixation durations, and fixation heatmaps on top of visualizations.',
@@ -292,8 +297,72 @@ export default {
       rqstResn: '',
       contactTitle: "Contact us!",
       contactDesc: "Questions? Comments?",
-      acknowledgement: "This work has been supported in part by the National Science Foundation (NSF) under grant 1016862, MIT Big Data Initiative at CSAIL, Google, and Xerox awards to Aude Oliva. This work has also been made possible through support from the Department of Defense through the National Defense Science & Engineering Graduate Fellowship (NDSEG) Program, the NSF Graduate Research Fellowship Program, the Natural Sciences and Engineering Research Council of Canada Postgraduate Doctoral Scholarship (NSERC PGS-D), and the Kwanjeong Educational Foundation."
-
+      acknowledgement: "This work has been supported in part by the National Science Foundation (NSF) under grant 1016862, MIT Big Data Initiative at CSAIL, Google, and Xerox awards to Aude Oliva. This work has also been made possible through support from the Department of Defense through the National Defense Science & Engineering Graduate Fellowship (NDSEG) Program, the NSF Graduate Research Fellowship Program, the Natural Sciences and Engineering Research Council of Canada Postgraduate Doctoral Scholarship (NSERC PGS-D), and the Kwanjeong Educational Foundation.",
+      columns: [
+        {
+          label: 'task_id',
+          field: 'task_id',
+          type: 'number',
+          tdClass: 'table-text-center',
+          width: '70px',
+        },
+        {
+          label: 'exp_sen_id',
+          field: 'exp_sen_id',
+          type: 'number',
+          tdClass: 'table-text-center',
+          width: '100px',
+        },
+        {
+          label: 'is_exp_sen',
+          field: 'is_exp_sen',
+          type: 'number',
+          tdClass: 'table-text-center',
+          width: '95px',
+        },
+        {
+          label: 'table_id',
+          field: 'table_id',
+          type: 'number',
+          tdClass: 'table-text-center',
+          width: '80px',
+        },
+        {
+          label: 'expert_id',
+          field: 'expert_id',
+          type: 'number',
+          tdClass: 'table-text-center',
+          width: '85px',
+        },
+        {
+          label: 'sentence',
+          field: 'sentence',
+          type: 'text',
+          width: '400px',
+        }
+      ],
+      rows: [
+        { id:1, task_id:"1", exp_sen_id: 1, is_exp_sen: 0, table_id: 1, expert_id: 1, sentence: 'show me arkansas\' population on july 1 , 2002 .'},
+        { id:2, task_id:"1", exp_sen_id: 715, is_exp_sen: 1, table_id: 35, expert_id: 16, sentence: 'how many residents in orange county are asians ?'},
+        { id:3, task_id:"2", exp_sen_id: 90, is_exp_sen: 0, table_id: 11, expert_id: 3, sentence: 'can you tell me the team that won the game ?'},
+        { id:4, task_id:"2", exp_sen_id: 91, is_exp_sen: 1, table_id: 7, expert_id: 3, sentence: 'which country has more females than males ?'},
+        { id:5, task_id:"3", exp_sen_id: 105, is_exp_sen: 0, table_id: 3, expert_id: 4, sentence: 'in western europe , what is the average gdp ?'},
+        { id:6, task_id:"3", exp_sen_id: 171, is_exp_sen: 1, table_id: 13, expert_id: 5, sentence: 'on average , how long are the books published by dark horse comics ?'},
+        { id:7, task_id:"4", exp_sen_id: 246, is_exp_sen: 0, table_id: 15, expert_id: 6, sentence: 'i would like to have the highest rating number .'},
+        { id:8, task_id:"4", exp_sen_id: 262, is_exp_sen: 1, table_id: 1, expert_id: 1, sentence: 'what is the longest study time that students have ?'},
+        { id:9, task_id:"5", exp_sen_id: 358, is_exp_sen: 1, table_id: 21, expert_id: 7, sentence: 'list all the expensive apps , from the most recent to the oldest .'},
+        { id:10, task_id:"5", exp_sen_id: 378, is_exp_sen: 0, table_id: 22, expert_id: 8, sentence: 'list all the movies according to their release year .'},
+        { id:11, task_id:"6", exp_sen_id: 433, is_exp_sen: 1, table_id: 24, expert_id: 9, sentence: 'what is the range of the number of undergraduate students ?'},
+        { id:12, task_id:"6", exp_sen_id: 491, is_exp_sen: 0, table_id: 26, expert_id: 10, sentence: 'in the south american countries , how large is the range of registered soccer players ?'},
+        { id:13, task_id:"7", exp_sen_id: 770, is_exp_sen: 0, table_id: 36, expert_id: 17, sentence: 'determine the value distribution of deaf -blind patients .'},
+        { id:14, task_id:"7", exp_sen_id: 810, is_exp_sen: 1, table_id: 32, expert_id: 18, sentence: 'show me the distribution of the population ratio binned with a bin size of 0.5 .'},
+        { id:15, task_id:"8", exp_sen_id: 236, is_exp_sen: 1, table_id: 15, expert_id: 6, sentence: 'is there any app that is significantly different from the others ?'},
+        { id:16, task_id:"8", exp_sen_id: 441, is_exp_sen: 0, table_id: 24, expert_id: 9, sentence: 'identify the anomalous values of both postgraduate and undergraduate income .'},
+        { id:17, task_id:"9", exp_sen_id: 916, is_exp_sen: 0, table_id: 32, expert_id: 20, sentence: 'group the length of trip by initial sites .'},
+        { id:18, task_id:"9", exp_sen_id: 532, is_exp_sen: 1, table_id: 27, expert_id: 11, sentence: 'find the cluster with the highest number of births among the neighborhoods across the years .'},
+        { id:19, task_id:"10", exp_sen_id: 80, is_exp_sen: 1, table_id: 3, expert_id: 2, sentence: 'can we infer that higher freedom leads to higher happiness ?'},
+        { id:20, task_id:"10", exp_sen_id: 613, is_exp_sen: 0, table_id: 30, expert_id: 13, sentence: 'are the ages of the actors and their winning results correlated ?'},
+      ],
     }
   },
   methods: {
