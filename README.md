@@ -32,7 +32,7 @@ Include Retrieve Value, Correlate, Compute Derived Value, Find Anomalies, etc.
 
 Focus on queries that have complete references to tasks or values associated with a task.
 
-## Dataset Preview ([Download](https://drive.google.com/file/d/1lYR8Vu5o0pXbBbbcJFUUwCU9wc4VfjPC/view))
+## Dataset Preview ([Download](https://github.com/freenli/quda_corpus))
 
 | Retrieve Value  | Filter | Compute Derived Value | Find Extremum | Sort | Determine Range | Characterize Distribution | Find Anomalies | Cluster | Correlate |
 | --------------- | ------ | --------------------- | ------------- | ---- | --------------- | ------------------------- | -------------- | ------- | --------- |
@@ -49,7 +49,7 @@ Focus on queries that have complete references to tasks or values associated wit
 | 6   | 3,2       | 171        | 1          | 13       | 5         | on average , how long are the books published by dark horse comics ?                          |
 | 7   | 4       | 246        | 0          | 15       | 6         | i would like to have the highest rating number .                                              |
 | 8   | 4       | 262        | 1          | 1        | 1         | what is the longest study time that students have ?                                           |
-| 9   | 5,2       | 358        | 1          | 21       | 7         | list all the expensive apps , from the most recent to the oldest .                            |
+| 9   | 5,2       | 358        | 1          | 15       | 7         | list all the expensive apps , from the most recent to the oldest .                            |
 | 10  | 5       | 378        | 0          | 22       | 8         | list all the movies according to their release year .                                         |
 | 11  | 6       | 433        | 1          | 24       | 9         | what is the range of the number of undergraduate students ?                                   |
 | 12  | 6,2       | 491        | 0          | 26       | 10        | in the south american countries , how large is the range of registered soccer players ?       |
@@ -65,7 +65,7 @@ Focus on queries that have complete references to tasks or values associated wit
 - task_id: task id of the sentence (1-10)
 - exp_sen_id: expert sentence id of the sentence (1-920)
 - is_exp_sen: whether the sentence is the expert sentence (0: no, 1: yes)
-- table_id: table id of the sentence (1-37)
+- table_id: table id of the sentence (1-36)
 - expert_id: expert id of the sentence (1-20)
 
 ## License
